@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Role } from './roles.model';
 import { RolesService } from './roles.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -22,6 +22,13 @@ export class RolesController {
     @ApiResponse({ status: 200, type: Role })
     @Post()
     public async createRole(@Body() roleDto: CreateRoleDto): Promise<Role> {
+        return await this.rolesService.createRole(roleDto);
+    }
+
+    @ApiOperation({ summary: 'Изменение роли' })
+    @ApiResponse({ status: 200, type: Role })
+    @Patch()
+    public async changeRole(@Body() roleDto: CreateRoleDto): Promise<Role> {
         return await this.rolesService.createRole(roleDto);
     }
 

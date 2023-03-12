@@ -11,8 +11,6 @@ interface UserCreationAttributes {
 
 @Table({
     tableName: 'users',
-    createdAt: false,
-    updatedAt: false,
 })
 export class User extends Model<User, UserCreationAttributes> {
 
