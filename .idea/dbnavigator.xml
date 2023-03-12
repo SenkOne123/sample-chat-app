@@ -22,6 +22,11 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="a275f008-8b86-4c5a-91b8-afe62b08f2c9" dataset="public.users" active-filter-id="2b0f422c-5f35-4819-854d-754420eb3c10">
+      <filter id="2b0f422c-5f35-4819-854d-754420eb3c10" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />

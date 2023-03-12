@@ -26,7 +26,7 @@ export class UsersController {
 
     @ApiOperation({ summary: 'Выдать роль' })
     @ApiResponse({ status: 200 })
-    @Roles('admin')
+    @Roles('admin', 'user')
     @UseGuards(RolesGuard)
     @Post('/role')
     public async addRole(@Body() userDto: AddRoleDto): Promise<User> {
