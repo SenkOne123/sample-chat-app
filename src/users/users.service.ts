@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { User } from './users.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user-dto';
 import { RolesService } from '../roles/roles.service';
+import { AddRoleDto } from './dto/add-role.dto';
+import { BanUserDto } from './dto/ban-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -33,5 +35,25 @@ export class UsersService {
         return await this.userRepository.findOne({ where: { username }, include: { all: true } })
     }
 
-    //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlbmtvbmUxMjNAZ21haWwuY29tIiwiaWQiOjEwLCJyb2xlcyI6W3siaWQiOjIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6ItCQ0LTQvNC40L3QuNGB0YLRgNCw0YLQvtGAIn1dLCJpYXQiOjE2Nzg2Mzg3ODYsImV4cCI6MTY3ODcyNTE4Nn0.tD972Lp7QzeOxc2-4wEjXXjEySDHblMq3D6PYYFleiQ
+    public async addRole(dto: AddRoleDto): Promise<User> {
+        const user = await this.userRepository.findByPk(dto.userId);
+        const role = await this.rolesService.getRoleByValue(dto.value);
+        const userHasRole = user.roles?.some(userRoles => userRoles.value === role.value) ?? false;
+        if (user && role && !userHasRole) {
+            await user.$add('roles', [role.id]);
+        } else {
+            throw new HttpException('Пользователь или роль не найдены!', HttpStatus.NOT_FOUND);
+        }
+        return user;
+    }
+
+    public async banUser(dto: BanUserDto): Promise<User> {
+        const existingUser = await this.userRepository.findByPk(dto.userId);
+        if (!existingUser) {
+            throw new HttpException('Пользователь не найден!', HttpStatus.NOT_FOUND);
+        }
+        existingUser.banned = true;
+        existingUser.banReason = dto.banReason;
+        return await existingUser.save();
+    }
 }
