@@ -1,26 +1,29 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user-dto';
 import { LoginUserDto } from '../users/dto/login-user-dto';
+import { Token } from './models/token';
 
-@ApiTags('Авторизация пользователя')
+@ApiTags('Аутентификация')
 @Controller('auth')
 export class AuthController {
 
     constructor(private authService: AuthService) {
     }
 
+    @ApiOperation({ summary: 'Авторизация пользователя' })
+    @ApiResponse({ status: 200 })
     @Post('/login')
-    public login(@Body() userDto: LoginUserDto) {
+    public login(@Body() userDto: LoginUserDto): Promise<Token> {
         return this.authService.login(userDto);
     }
 
+    @ApiOperation({ summary: 'Регистрация пользователя' })
+    @ApiResponse({ status: 200 })
     @Post('/registration')
-    public registration(@Body() userDto: CreateUserDto) {
+    public registration(@Body() userDto: CreateUserDto): Promise<Token> {
         return this.authService.registration(userDto);
     }
-
-    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlbmtvbmUwMTIzQGdtYWlsLmNvbSIsImlkIjo5LCJyb2xlcyI6W3siaWQiOjMsInZhbHVlIjoidXNlciIsImRlc2NyaXB0aW9uIjoi0J_QvtC70YzQt9C-0LLQsNGC0LXQu9GMIn1dLCJpYXQiOjE2Nzg2MzgyNTAsImV4cCI6MTY3ODcyNDY1MH0.kkNgj9p15Jx2of-aLMcu9CahuexK6SAD7Rt3q7dnl8g
 
 }
