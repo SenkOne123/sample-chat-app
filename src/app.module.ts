@@ -16,6 +16,7 @@ import { UserRoles } from './modules/authentication/roles/user-roles.model';
         }),
         SequelizeModule.forRoot({
             dialect: 'postgres',
+            ...(process.env.POSTGRES_URL) && { uri: process.env.POSTGRES_URL},
             host: process.env.POSTGRES_HOST,
             username: process.env.POSTGRES_USER,
             password: process.env.POSTGRES_PASSWORD,
