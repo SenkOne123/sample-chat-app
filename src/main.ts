@@ -7,7 +7,14 @@ async function start() {
     const PORT = process.env.PORT || 5000;
     const app = await NestFactory.create(AppModule);
 
-    app.enableCors();
+    app.enableCors({
+        origin: [
+            'https://sample-chat-eight.vercel.app',
+            'https://sample-chat-eight.vercel.app:4200'
+        ],
+        methods: ["GET", "POST"],
+        credentials: true,
+    });
 
     const config = new DocumentBuilder()
         .setTitle('Sample Chat App')
