@@ -5,9 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function start() {
     const PORT = process.env.PORT || 5000;
-    console.log('Here!', process.env.POSTGRES_HOST)
     const app = await NestFactory.create(AppModule);
-    console.log('Look!', process.env.POSTGRES_HOST)
 
     const config = new DocumentBuilder()
         .setTitle('Sample Chat App')
