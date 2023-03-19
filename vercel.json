@@ -1,14 +1,5 @@
 {
   "version": 2,
-  "env": {
-    "PORT": "@port",
-    "POSTGRES_HOST": "@host",
-    "POSTGRES_USER": "@user",
-    "POSTGRES_DB": "@db",
-    "POSTGRES_PASSWORD": "@password",
-    "POSTGRES_PORT": "@pg_port",
-    "PRIVATE_KEY": "@private_key"
-  },
   "builds": [
     {
       "src": "src/main.ts",
