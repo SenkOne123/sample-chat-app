@@ -10,4 +10,4 @@ COPY . .
 
 COPY ./dist ./dist
 
-CMD ['nmp', 'run', 'start:dev']
+CMD ["npm", "run", "start:dev"]

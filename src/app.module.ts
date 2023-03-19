@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './modules/authentication/users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { User } from './modules/authentication/users/users.model';
 import { RolesModule } from './modules/authentication/roles/roles.module';
-import { Role } from './modules/authentication/roles/roles.model';
-import { UserRoles } from './modules/authentication/roles/user-roles.model';
 import { AuthModule } from './modules/authentication/auth/auth.module';
 import { MainModule } from './modules/main/main.module';
+import { User } from './modules/authentication/users/users.model';
+import { Role } from './modules/authentication/roles/roles.model';
+import { UserRoles } from './modules/authentication/roles/user-roles.model';
 
 @Module({
     imports: [
@@ -30,6 +30,4 @@ import { MainModule } from './modules/main/main.module';
         MainModule,
     ],
 })
-export class AppModule {
-
-}
+export class AppModule { }

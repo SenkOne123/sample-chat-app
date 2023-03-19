@@ -1,8 +1,8 @@
 {
-  "name": "something",
+  "name": "sample-chat-app",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Nikita Mikryukov",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
