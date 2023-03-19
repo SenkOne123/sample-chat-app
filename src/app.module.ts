@@ -7,6 +7,7 @@ import { RolesModule } from './modules/authentication/roles/roles.module';
 import { Role } from './modules/authentication/roles/roles.model';
 import { UserRoles } from './modules/authentication/roles/user-roles.model';
 import { AuthModule } from './modules/authentication/auth/auth.module';
+import { MainModule } from './modules/main/main.module';
 
 @Module({
     imports: [
@@ -26,6 +27,7 @@ import { AuthModule } from './modules/authentication/auth/auth.module';
         UsersModule,
         RolesModule,
         AuthModule,
+        MainModule,
     ],
 })
 export class AppModule {
